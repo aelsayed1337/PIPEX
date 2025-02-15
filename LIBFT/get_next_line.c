@@ -6,13 +6,13 @@
 /*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 23:56:08 by aelsayed          #+#    #+#             */
-/*   Updated: 2025/02/13 20:15:03 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/02/15 16:44:24 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*freed(char *store, char *buffer)
+char	*freed(char *store, char *buffer)
 {
 	if (store)
 	{
@@ -27,7 +27,7 @@ static char	*freed(char *store, char *buffer)
 	return (NULL);
 }
 
-static char	*fetch_segment(char *store, int fd)
+char	*fetch_segment(char *store, int fd)
 {
 	char	*buffer;
 	char	*total;
@@ -37,7 +37,7 @@ static char	*fetch_segment(char *store, int fd)
 	buffer = (char *)malloc(BUFFER_SIZE + 1);
 	if (!buffer || !store)
 		return (freed(store, buffer));
-	while (readbytes > 0 && ft_strchr_index(store, '\n') == -1)
+	while (readbytes > 0 && ft_strchr(store, '\n') == NULL)
 	{
 		readbytes = read(fd, buffer, BUFFER_SIZE);
 		if (readbytes == -1)
@@ -53,7 +53,7 @@ static char	*fetch_segment(char *store, int fd)
 	return (store);
 }
 
-static char	*segment_to_newline(char *store)
+char	*segment_to_newline(char *store)
 {
 	char	*line;
 	int		position;
@@ -72,7 +72,7 @@ static char	*segment_to_newline(char *store)
 	return (line);
 }
 
-static char	*clear_till_newline(char *store)
+char	*clear_till_newline(char *store)
 {
 	int		position;
 	char	*new_store;
@@ -101,7 +101,11 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = segment_to_newline(store);
 	if (!line)
-		return (ft_free("1", store), NULL);
+	{
+		free(store);
+		store = NULL;
+		return (NULL);
+	}
 	store = clear_till_newline(store);
 	return (line);
 }

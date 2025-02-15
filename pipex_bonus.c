@@ -6,7 +6,7 @@
 /*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:22:22 by aelsayed          #+#    #+#             */
-/*   Updated: 2025/02/13 20:05:07 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/02/15 16:43:25 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int	here_doc(char *stopper)
 			break ;
 		trim = ft_strtrim(line, "\n/");
 		if (!ft_strncmp(trim, stopper, ft_strlen(line) + 1))
-			return (ft_free("11", line, trim), get_next_line(-1), input);
+			return (ft_free("11", trim, line), get_next_line(-1), input);
 		printfd(fd, "%s", trim);
-		ft_free("11", line, trim);
+		ft_free("11", trim, line);
 	}
 	return (get_next_line(-1), input);
 }
