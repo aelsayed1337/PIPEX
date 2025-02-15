@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_error.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelsayed <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 20:57:25 by aelsayed          #+#    #+#             */
-/*   Updated: 2024/12/22 13:09:10 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:07:25 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	bpath_err(char **av, int ac)
 	int	i;
 
 	i = 3;
-	while (i < ac)
+	while (i < ac - 1)
 		exit_error(-1, 0, 'c', av[i++]);
 	unlink(".here_doc_tmp");
 	return (1);

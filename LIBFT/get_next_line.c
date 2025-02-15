@@ -6,7 +6,7 @@
 /*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 23:56:08 by aelsayed          #+#    #+#             */
-/*   Updated: 2025/01/11 23:56:20 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:15:03 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || BUFFER_SIZE >= 0x7FFFFFFF)
-		return (NULL);
+		return (free(store), NULL);
 	if (!store)
 		store = ft_strndup("", 0);
 	store = fetch_segment(store, fd);
@@ -101,11 +101,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	line = segment_to_newline(store);
 	if (!line)
-	{
-		free(store);
-		store = NULL;
-		return (NULL);
-	}
+		return (ft_free("1", store), NULL);
 	store = clear_till_newline(store);
 	return (line);
 }

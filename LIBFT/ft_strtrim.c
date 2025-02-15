@@ -6,7 +6,7 @@
 /*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 18:23:17 by aelsayed          #+#    #+#             */
-/*   Updated: 2025/01/12 13:15:41 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:30:13 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strtrim(char const *s, char const *set)
 
 	start = 0;
 	end = 0;
+	if (!s)
+		return (NULL);
 	if (*s == '\0')
 		return ((char *)ft_calloc(1, 1));
 	while (s[end])

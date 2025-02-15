@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aelsayed <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 17:22:22 by aelsayed          #+#    #+#             */
-/*   Updated: 2024/12/27 19:29:13 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:05:07 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	here_doc(char *stopper)
 	char	*line;
 	int		fd;
 	int		input;
+	char	*trim;
 
 	fd = open(".here_doc_tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
 	input = open(".here_doc_tmp", O_CREAT | O_RDWR | O_TRUNC, 0644);
@@ -29,15 +30,15 @@ int	here_doc(char *stopper)
 	{
 		printfd(1, "pipex here_doc> ");
 		line = get_next_line(0);
-		if (!ft_strncmp(ft_strtrim(line, "\n/"), stopper, ft_strlen(line)))
-		{
-			free(line);
+		if (!line)
 			break ;
-		}
-		printfd(fd, "%s", ft_strtrim(line, "/"));
-		free(line);
+		trim = ft_strtrim(line, "\n/");
+		if (!ft_strncmp(trim, stopper, ft_strlen(line) + 1))
+			return (ft_free("11", line, trim), get_next_line(-1), input);
+		printfd(fd, "%s", trim);
+		ft_free("11", line, trim);
 	}
-	return (input);
+	return (get_next_line(-1), input);
 }
 
 static void	bfork_doc(t_var *vars, char **av, char **envp, int ac)

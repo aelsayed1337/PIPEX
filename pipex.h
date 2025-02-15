@@ -6,14 +6,14 @@
 /*   By: aelsayed <aelsayed@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 17:27:09 by aelsayed          #+#    #+#             */
-/*   Updated: 2025/01/30 20:00:39 by aelsayed         ###   ########.fr       */
+/*   Updated: 2025/02/13 19:06:17 by aelsayed         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "../LIBFT/libft.h"
+# include "LIBFT/libft.h"
 # include <errno.h>
 # include <sys/wait.h>
 
